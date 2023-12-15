@@ -15,7 +15,6 @@ export let CharacterC = {
         this.animations = gltf_obj.animations;
 
         this.position = this.threeObj.position
-        // this.position.set(0.6736335754394531, 0, -3.066420555114746)
         this.position.y = 0.15;
     
         this.rotation = gltf_obj.scene.rotation

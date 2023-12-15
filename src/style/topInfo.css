@@ -1,0 +1,66 @@
+.topInfo {
+  position: fixed;
+  /* background-color: aqua; */
+  top: 5vh;
+  left: 3vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 94vw;
+}
+
+.questContainer {
+  width: 60vw;
+  height: 10vh;
+  background-image: url('../../static/UI/HUD_ObjectiveTracker.png');
+  background-size: 100% 100%;
+}
+
+.resourceBg {
+  width: 26vw;
+  height: 5vh;
+
+  background-image: url('../../static/UI/buyButtonShop.webp');
+  background-size: 100% 100%;
+
+  margin-bottom: 5px;
+}
+
+.resourceContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.total {
+  color: #404040;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.moneyTotalCoinImg {
+  position: fixed;
+  top: 4.7vh;
+  right: 2vw;
+
+  width: 40px;
+  height: 40px;
+
+  background-image: url('../../static/UI/icon_MultipleSoftCurrency.webp');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.flowersTotalImg {
+  position: fixed;
+  top: 10vh;
+  right: 2vw;
+
+  width: 40px;
+  height: 40px;
+
+  background-image: url('../../static/UI/icon_resource_Flax.webp');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
