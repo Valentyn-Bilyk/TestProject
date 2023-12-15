@@ -12,8 +12,35 @@
     />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./style/shop.css" />
+    <link rel="stylesheet" href="./style/topInfo.css" />
   </head>
   <body>
+    <div class="topInfo">
+      <div class="questContainer">
+        <p class="questTask"></p>
+
+        <div class="progressBar"></div>
+      </div>
+
+      <div>
+        <div class="resourceBg">
+          <div class="resourceContainer">
+            <p class="total money">300</p>
+          </div>
+
+          <div class="moneyTotalCoinImg"></div>
+        </div>
+
+        <div class="resourceBg">
+          <div class="resourceContainer">
+            <p class="total flowers">0</p>
+          </div>
+
+          <div class="flowersTotalImg"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="isHideShop" style="display: none;">
       <div class="titleContainer">
         <title class="shopTitle">Shop</title>
@@ -23,7 +50,7 @@
       <div class="container">
         <div class="bgCards">
           <div class="shopCards">
-            <div class="shopCard" itemid="dbBed">
+            <div class="shopCard" id="dbBed">
               <div class="imgContainer">
                 <div class="cardImg db"></div>
               </div>
@@ -37,7 +64,7 @@
               </div>
             </div>
 
-            <div class="shopCard" itemid="armchair">
+            <div class="shopCard" id="armchair">
               <div class="imgContainer">
                 <div class="cardImg arm"></div>
               </div>
@@ -48,11 +75,11 @@
                 <div class="cardPriceContainer">
                   <p class="cardPrice">300</p>
                 </div>
-                <div class="shopCoinImg"></div>
+                <div class="shopCoinImg" id="armchairIcn"></div>
               </div>
             </div>
 
-            <div class="shopCard" itemid="drawers">
+            <div class="shopCard" id="drawers">
               <div class="imgContainer">
                 <div class="cardImg dra"></div>
               </div>
@@ -67,7 +94,7 @@
               </div>
             </div>
 
-            <div class="shopCard" itemid="sofa">
+            <div class="shopCard" id="sofa">
               <div class="imgContainer">
                 <div class="cardImg sof"></div>
               </div>
@@ -82,7 +109,7 @@
               </div>
             </div>
 
-            <div class="shopCard" itemid="tv">
+            <div class="shopCard" id="tv">
               <div class="imgContainer">
                 <div class="cardImg tvhd"></div>
               </div>
@@ -97,7 +124,7 @@
               </div>
             </div>
 
-            <div class="shopCard" itemid="yarn">
+            <div class="shopCard" id="yarn">
               <div class="imgContainer">
                 <div class="cardImg yar"></div>
               </div>
@@ -112,7 +139,7 @@
               </div>
             </div>
 
-            <div class="shopCard" itemid="flaxplant">
+            <div class="shopCard" id="flaxplant">
               <div class="imgContainer">
                 <div class="cardImg flx"></div>
               </div>
@@ -127,7 +154,7 @@
               </div>
             </div>
 
-            <div class="shopCard" itemid="lamp">
+            <div class="shopCard" id="lamp">
               <div class="imgContainer">
                 <div class="cardImg lmp"></div>
               </div>
@@ -142,7 +169,7 @@
               </div>
             </div>
 
-            <div class="shopCard" itemid="rug">
+            <div class="shopCard" id="rug">
               <div class="imgContainer">
                 <div class="cardImg rg"></div>
               </div>
@@ -166,6 +193,7 @@
         </div>
       </div>
     </div>
+
     <canvas class="canvas"></canvas>
 
     <div class="moveController"></div>
