@@ -26,6 +26,11 @@ export let CharacterC = {
         this.changeAnimation(this.actionIdle, this.actionWalk)
 
     },
+    // refactor: add method
+    setVelocity() {
+
+    },
+    // refactor: add methods startRunning, startIdle
     changeAnimation(actionIdle, actionWalk) {
         if (this.animationNumber === 2) {
             actionWalk.stop()

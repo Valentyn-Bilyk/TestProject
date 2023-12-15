@@ -7,6 +7,8 @@ export let MapC = {
 
     this.threeObj.position.set(2.5, 0, 3.5);
 
+    // refactor: https://threejs.org/docs/#api/en/core/Object3D.getObjectByName
+
     this.threeObj.children[0].children[6].visible = false;
     this.threeObj.children[0].children[0].visible = false;
 

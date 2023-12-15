@@ -4,6 +4,8 @@ document.querySelector(".shopCloseButton").onclick = function () {
 
 document.querySelector(".isHideShop").style.display = "block";
 
+// refactor - move creating elemtns to for cycle
+
 const armchair = document.getElementById("armchair");
 armchair.onclick = function () {
   armchair.style.opacity = 0.5;

@@ -27,6 +27,8 @@ const sizes = {
   height: window.innerHeight,
 };
 
+// refactor - move to ThreeC.js
+
 const ambientLIght = new THREE.AmbientLight(0xffffff, 2);
 scene.add(ambientLIght);
 
@@ -43,7 +45,13 @@ camera.position.x = -3;
 const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(sizes.with, sizes.height);
 
+// refactor - create JoystickC.js or MoveController.js
+
+
 Joy.manager.on('move', function(evt, nipple) {
+
+  // remove ifs
+
   if (nipple.force > 0 && nipple.force <= 0.2) {
     CharacterC.velocity.x = Math.cos(nipple.angle.radian) * 0.02
     CharacterC.velocity.z = -Math.sin(nipple.angle.radian) * 0.02
@@ -60,6 +68,8 @@ Joy.manager.on('move', function(evt, nipple) {
     CharacterC.animationNumber = 4
     CharacterC.rotation.y = nipple.angle.radian + 1
   }
+
+  //CharacterC.setVelocity();
 })
 
 Joy.manager.on('end', function(evt, nipple) {
