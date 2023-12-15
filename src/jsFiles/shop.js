@@ -4,54 +4,132 @@ document.querySelector(".shopCloseButton").onclick = function () {
 
 document.querySelector(".isHideShop").style.display = "block";
 
-// refactor - move creating elemtns to for cycle
+const shopCards = document.querySelector('.shopCards')
+const categories = document.querySelector('.categories')
 
-const armchair = document.getElementById("armchair");
-armchair.onclick = function () {
-  armchair.style.opacity = 0.5;
+function createShopCard(imgName, cardName, price) {
+  const shopCard = document.createElement('div')
+  shopCard.classList.add('shopCard')
 
-  document.getElementById("armchairIcn").style.backgroundImage =
-    "url('../../static/UI/circle_OKmark.webp')";
-    
-  console.log("armchair");
-};
+  const imgContainer = document.createElement('div')
+  imgContainer.classList.add('imgContainer')
 
-const dbBed = document.getElementById("dbBed");
-dbBed.onclick = function () {
-  console.log("dbBed");
-};
+  const cardImg = document.createElement('div')
+  cardImg.classList.add('cardImg', imgName)
 
-const drawers = document.getElementById("drawers");
-drawers.onclick = function () {
-  console.log("drawers");
-};
+  const cardTitle = document.createElement('h3')
+  cardTitle.classList.add('cardTitle')
+  cardTitle.append(cardName)
 
-const sofa = document.getElementById("sofa");
-sofa.onclick = function () {
-  console.log("sofa");
-};
+  const cardPriceBg = document.createElement('div')
+  cardPriceBg.classList.add('cardPriceBg')
 
-const tv = document.getElementById("tv");
-tv.onclick = function () {
-  console.log("tv");
-};
+  const cardPrice = document.createElement('p')
+  cardPrice.classList.add('cardPrice')
+  cardPrice.append(price)
 
-const yarn = document.getElementById("yarn");
-yarn.onclick = function () {
-  console.log("yarn");
-};
+  const shopCoinImg = document.createElement('div')
+  shopCoinImg.classList.add('shopCoinImg')
+  
+  shopCards.append(shopCard)
+  shopCard.append(imgContainer)
+  imgContainer.append(cardImg)
 
-const flaxplant = document.getElementById("flaxplant");
-flaxplant.onclick = function () {
-  console.log("flaxplant");
-};
+  shopCard.append(cardTitle)
 
-const lamp = document.getElementById("lamp");
-lamp.onclick = function () {
-  console.log("lamp");
-};
+  shopCard.append(cardPriceBg)
+  cardPriceBg.append(cardPrice)
+  cardPriceBg.append(shopCoinImg)
 
-const rug = document.getElementById("rug");
-rug.onclick = function () {
-  console.log("rug");
-};
+  shopCard.onclick = () => {
+    shopCard.style.opacity = 0.5
+    shopCoinImg.classList.remove('shopCoinImg')
+    shopCoinImg.classList.add('bought')
+  }
+}
+
+function createShopCategories(catName, catImg) {
+  const catBg = document.createElement('div')
+  catBg.classList.add('catBg')
+
+  const img = document.createElement('div')
+  img.classList.add('img')
+
+  categories.append(catBg)
+  catBg.append(img)
+}
+createShopCategories()
+createShopCategories()
+createShopCategories()
+createShopCategories()
+const shopProduct = [
+  {
+    cardImg: 'db',
+    cardName: 'Double Bed',
+    cardPrice: 350,
+  },
+  {
+    cardImg: 'arm',
+    cardName: 'Armchair',
+    cardPrice: 300,
+  },
+  {
+    cardImg: 'dra',
+    cardName: 'Drawers',
+    cardPrice: 250,
+  },
+  {
+    cardImg: 'sof',
+    cardName: 'Sofa',
+    cardPrice: 300,
+  },
+  {
+    cardImg: 'tvhd',
+    cardName: 'TV',
+    cardPrice: 250,
+  },
+  {
+    cardImg: 'yar',
+    cardName: 'Yarn Basket',
+    cardPrice: 200,
+  },
+  {
+    cardImg: 'flx',
+    cardName: 'Flaxplant',
+    cardPrice: 100,
+  },
+  {
+    cardImg: 'lmp',
+    cardName: 'Lamp',
+    cardPrice: 250,
+  },
+  {
+    cardImg: 'rg',
+    cardName: 'Rug',
+    cardPrice: 100,
+  },
+]
+
+const shopCategories = [
+  {
+    catName: 'all',
+    catImg: 'allImg'
+  },
+  {
+    catName: 'bad',
+    catImg: 'badImg'
+  },
+  {
+    catName: 'furni',
+    catImg: 'furniImg'
+  },
+  {
+    catName: 'garden',
+    catImg: 'gardenImg'
+  }
+]
+
+shopProduct.map(({cardImg, cardName, cardPrice}) => {
+  createShopCard(cardImg, cardName, cardPrice)
+})
+
