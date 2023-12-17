@@ -1,4 +1,3 @@
-/* Mobile Start */
 .container {
   position: fixed;
   top: 15vh;
@@ -74,7 +73,7 @@
 
 .shopCards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 85px);
+  grid-template-columns: repeat(auto-fill, 22vw);
   justify-content: center;
 
   column-gap: 6px;
@@ -88,7 +87,6 @@
   display: flex;
   flex-direction: column;
 
-  width: 85px;
   height: 120px;
 
   background-image: url(../../static/UI/bg_buttonShop.png);
@@ -227,64 +225,83 @@
 
 .categories {
   display: flex;
-  gap: 5px;
-  width: 70vw;
+  gap: 1vw;
+  
   height: 7vh;
-  margin-top: 10px;
+
+  margin-top: 1.5vh;
 }
 
-.catBg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 70px;
-  height: 40px;
-
-  background-image: url(../../static/UI/button_sectionShop_Inactive.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+.img {
+  width: 7vw;
+  height: 7vw;
 }
+
+.catBg,
 .catBgLight {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 70px;
-  height: 40px;
+  width: 16vw;
+  height: 6vh;
 
-  background-image: url(../../static/UI/bg_buttonShop.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
-.img {
-  width: 30px;
-  height: 30px;
+.catBg {
+  background-image: url(../../static/UI/button_sectionShop_Inactive.png);
+}
 
-  background-image: url(../../static/UI/icon_shopItem_TV.webp);
+.catBgLight {
+  background-image: url(../../static/UI/buyButtonShop.png);
+}
+
+.allImgDark {
+  background-image: url(../../static/UI/icon_shopAll_Dark.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .allImg {
-  background-image: url(../../static/UI/icon_shopAll_Dark.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-.allImgLight {
   background-image: url(../../static/UI/icon_shopAll_active.webp);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
-.furni {
+.sofaImg {
   background-image: url(../../static/UI/icon_shopCategory_Sofa.webp);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-.furniDark {
+
+.sofaImgDark {
   background-image: url(../../static/UI/icon_shopCategory_Sofa_Dark.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.badImg {
+  background-image: url(../../static/UI/icon_shopCategory_Bed.webp);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.badImgDark {
+  background-image: url(../../static/UI/icon_shopCategory_Bed_Dark.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.gardenImg {
+  background-image: url(../../static/UI/icon_shopCategory_fence.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.gardenImgDark {
+  background-image: url(../../static/UI/icon_shopCategory_fence_Dark.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }

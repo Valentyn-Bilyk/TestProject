@@ -1,8 +1,8 @@
 .topInfo {
   position: fixed;
-  /* background-color: aqua; */
   top: 5vh;
   left: 3vw;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,7 +18,7 @@
 }
 
 .resourceBg {
-  width: 26vw;
+  width: 30vw;
   height: 5vh;
 
   background-image: url('../../static/UI/buyButtonShop.webp');
@@ -63,4 +63,23 @@
   background-image: url('../../static/UI/icon_resource_Flax.webp');
   background-size: 100% 100%;
   background-repeat: no-repeat;
+}
+
+@media (width > 576px) {
+  .total {
+    font-size: 22px;
+  }
+
+  .resourceBg {
+    width: 25vw;
+  }
+
+  .moneyTotalCoinImg {
+    width: 50px;
+  height: 50px;
+  }
+  .flowersTotalImg {
+    width: 50px;
+  height: 50px;
+  }
 }
