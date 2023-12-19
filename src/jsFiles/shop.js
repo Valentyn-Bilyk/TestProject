@@ -182,7 +182,7 @@ function displayBoughtItems() {
   });
 }
 
-shopProduct.map(({cardImg, cardName, cardPrice}) => {
+shopProduct.forEach(({cardImg, cardName, cardPrice}) => {
   createShopCard(cardImg, cardName, cardPrice)
 })
 
@@ -197,7 +197,7 @@ first.classList.add('catBgLight')
 document.querySelector(".shopCloseButton").onclick = function () {
   document.querySelector(".isHideShop").style.display = "none";
 };
-document.querySelector(".isHideShop").style.display = "block";
+// document.querySelector(".isHideShop").style.display = "block";
 
 window.addEventListener('keydown', (event) => {
   if (event.code === 'Space') {

@@ -103,7 +103,7 @@
 
   border-radius: 13px;
   background: #e8d9c3;
-  
+
   margin: 0 auto;
   margin-top: 20px;
 }
@@ -226,7 +226,7 @@
 .categories {
   display: flex;
   gap: 1vw;
-  
+
   height: 7vh;
 
   margin-top: 1.5vh;
@@ -306,7 +306,73 @@
   background-repeat: no-repeat;
 }
 
-@media (width > 576px) {
+
+
+@media (orientation: landscape) {
+  .container {
+    top: 10vh;
+    background-image: url("../../static/UI/bg2.png");
+    height: 87vh;
+  }
+
+  .titleContainer {
+    width: 30vw;
+    height: 7vh;
+    top: 8vh;
+    padding-top: 1vh;
+  }
+
+  .shopCloseButton {
+    top: 11vh;
+    left: 3vw;
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .bgCards {
+    height: 72vh;
+    order: 2;
+    margin-top: 4vh;
+  }
+
+  .shopCards {
+    grid-template-columns: repeat(auto-fill, 100px);
+    margin-top: 0px;
+
+    column-gap: 5px;
+    row-gap: 25px;
+  }
+
+  .shopCard {
+    height:110px;
+  }
+
+  .imgContainer {
+    margin-top: 15px;
+  }
+
+  .shopCoinImg {
+    bottom: -20px;
+  }
+
+  .categories {
+    margin-left: auto;
+    margin-right: 5px;
+  }
+
+  .catBg,
+  .catBgLight {
+    width: 12vw;
+  height: 10vh;
+  }
+
+  .img {
+    width: 7vh;
+  height: 7vh;
+  }
+}
+
+@media (min-width: 576px) and (orientation: portrait) {
   .shopCloseButton {
     left: 2vw;
     width: 60px;
@@ -356,6 +422,52 @@
   }
 }
 
-@media (orientation: landscape) {
+@media (min-height: 760px) and (orientation: landscape) {
+  .shopCloseButton {
+    left: 2vw;
+    width: 60px;
+    height: 60px;
+  }
 
+  .shopCards {
+    grid-template-columns: repeat(auto-fill, 157px);
+  }
+
+  .shopCard {
+    width: 160px;
+  height: 200px;
+  }
+
+  .imgContainer {
+    width: 140px;
+  height: 140px;
+  }
+
+  .cardImg {
+    width: 120px;
+    height: 120px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .cardPriceBg {
+    width: 130px;
+  height: 35px;
+  }
+
+  .cardPrice {
+    font-size: 18px;
+  }
+
+  .shopCoinImg {
+    width: 40px;
+  height: 40px;
+  }
+
+  .bought {
+    width:30px;
+  height:30px;
+  }
 }
