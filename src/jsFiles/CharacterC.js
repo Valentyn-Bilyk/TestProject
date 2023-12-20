@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import CANNON from "cannon";
-import {Trig} from './MapC'
+import {HouseTrigger, TestCollider, Trig} from './MapC'
 import { world } from "./physicsC";
+import { HouseC, isVisibleWalls } from "./HouseC";
 
 export let CharacterC = {
   animations: [],
@@ -18,7 +19,7 @@ export let CharacterC = {
     this.animations = gltf_obj.animations;
 
     this.position = this.threeObj.position;
-    // this.position.y = 0.15;
+    this.position.set(-2.473, 0, -3.693)
 
     this.rotation = gltf_obj.scene.rotation;
 
@@ -26,6 +27,16 @@ export let CharacterC = {
     this.actionIdle = this.animationMixer.clipAction(this.animations[2]);
     this.actionWalk = this.animationMixer.clipAction(this.animations[4]);
 
+    window.addEventListener('keydown', (event) => {
+      // if (event.code === 'Space') {
+      //   boughtItemsContainer.style.display = 'flex'
+      // }
+    
+      if (event.code === 'Space') {
+        console.log(this.position)
+      }
+    })
+    
     CharacterC.initPhysics(world)
   },
   
@@ -65,10 +76,28 @@ export let CharacterC = {
     });
     world.addBody(this.physicsBody);
     this.physicsBody.addEventListener('collide', function(event){
-  
+      
       const collidedBody = event.body;
-      const srgv = Trig.triggerBody
-      document.querySelector(".isHideShop").style.display = "block";
+      const triggerShop = Trig.triggerBody
+      const houseWalls = isVisibleWalls.triggerBody
+      const houseTrigger = HouseTrigger.triggerBody
+      const collide = TestCollider.triggerBody
+
+      if (collidedBody === houseTrigger) {
+        document.querySelector(".boughtItemsContainer").style.display = "flex"
+      }
+
+      if(collidedBody === houseWalls) {
+        HouseC.hideWalls()
+      }
+
+      if (collidedBody === collide) {
+        console.log('ASDC ')
+      }
+
+      if (collidedBody === triggerShop) {
+        document.querySelector(".isHideShop").style.display = "block";
+      }
       console.log('detected')
     });
   },
@@ -86,3 +115,4 @@ export let CharacterC = {
   
 
 // }
+//_Vector3 {x: 32.850785824070734, y: 0, z: -21.537729829287578}
