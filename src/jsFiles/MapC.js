@@ -1,6 +1,5 @@
-
-import CANNON from "cannon";
-import { world } from "./physicsC";
+import * as CANNON from 'cannon-es'
+import { world } from "./base";
 
 import { Furniture } from "./furniture";
 import { HouseC } from "./HouseC";
@@ -53,6 +52,7 @@ export let HouseTrigger = {
     HouseTrigger.initPhysics(world)
   },
   initPhysics(world) {
+    return;
     const shape = new CANNON.Sphere(0.5);
     this.triggerBody = new CANNON.Body({
       mass: 0, 
@@ -80,6 +80,7 @@ export let TestCollider = {
     TestCollider.initPhysics(world)
   },
   initPhysics(world) {
+    return;
     const shape = new CANNON.Box(new CANNON.Vec3(this.geometry.x, this.geometry.y, this.geometry.z));
     this.triggerBody = new CANNON.Body({
       mass: 0, 

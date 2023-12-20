@@ -1,7 +1,7 @@
 import * as THREE from "three";
-import CANNON from "cannon";
+import * as CANNON from 'cannon-es'
 import {HouseTrigger, TestCollider, Trig} from './MapC'
-import { world } from "./physicsC";
+import { world } from "./base";
 import { HouseC, isVisibleWalls } from "./HouseC";
 
 export let CharacterC = {
@@ -72,7 +72,7 @@ export let CharacterC = {
     this.physicsBody = new CANNON.Body({
       mass: 1, 
       position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
-      shape: shape,
+      shape: shape
     });
     world.addBody(this.physicsBody);
     this.physicsBody.addEventListener('collide', function(event){

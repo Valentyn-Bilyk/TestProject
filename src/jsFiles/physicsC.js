@@ -1,8 +1,10 @@
-import CANNON from "cannon";
+import * as CANNON from 'cannon-es'
 import {CharacterC} from './CharacterC'
 import {Trig} from './MapC'
+import CannonDebugger from 'cannon-es-debugger'
+import { ThreeC } from "./ThreeC";
 
-export const world = new CANNON.World()
+
 
 // Trig.triggerBody
 // world.addEventListener('triggerenter', function (evt) {

@@ -3,9 +3,15 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { CharacterC } from "./CharacterC";
 import { MapC } from "./MapC";
 import { ThreeC } from "./ThreeC";
-import { world } from "./physicsC";
+import * as CANNON from 'cannon-es'
+import CannonDebugger from 'cannon-es-debugger'
 
 ThreeC.init();
+
+export const world = new CANNON.World()
+export const cannonDebugger = new CannonDebugger(ThreeC.scene, world, {
+    // options...
+  })
 
 const gltfLoader = new GLTFLoader();
 
@@ -33,8 +39,11 @@ function animate() {
   const deltaTime = elapsedTime - previousTime;
   previousTime = elapsedTime;
 
-  world.step(1 / 60, deltaTime, 3);
-  CharacterC.update(deltaTime);
+  world.fixedStep();
+  cannonDebugger.update();
+
+  if(CharacterC)
+    CharacterC.update(deltaTime);
 
   if (wsef < 41) {
     updateProgress(wsef);

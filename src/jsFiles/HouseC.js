@@ -1,5 +1,5 @@
-import CANNON from "cannon";
-import { world } from "./physicsC";
+import * as CANNON from 'cannon-es'
+import { world } from "./base";
 
 export let HouseC = {
   threeObj: null,
