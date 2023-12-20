@@ -10,11 +10,47 @@
   width: 94vw;
 }
 
+.segment {
+  position: absolute;
+  width: 9vw;
+  height: 9.8vh;
+  background-image: url('../../static/UI/rectangle.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  right: 0;
+}
 .questContainer {
+  position: relative;
   width: 60vw;
   height: 10vh;
   background-image: url('../../static/UI/HUD_ObjectiveTracker.png');
   background-size: 100% 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+}
+
+.progressBar {
+  width: 40vw;
+  height: 4px;
+  margin-right: auto;
+  margin-left: 8vw;
+
+  background-image: url('../../static/UI/bar_quest_full.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.progressUpdate {
+  background-image: url('../../static/UI/bar_quest_empty.png');
+  width: 0vw;
+  height: 4px;
+  opacity: 1;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .resourceBg {

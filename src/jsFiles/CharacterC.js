@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import CANNON from "cannon";
-// import {MapC} from './MapC'
+import {Trig} from './MapC'
+import { world } from "./physicsC";
 
 export let CharacterC = {
   animations: [],
@@ -24,6 +25,8 @@ export let CharacterC = {
     this.animationMixer = new THREE.AnimationMixer(this.threeObj);
     this.actionIdle = this.animationMixer.clipAction(this.animations[2]);
     this.actionWalk = this.animationMixer.clipAction(this.animations[4]);
+
+    CharacterC.initPhysics(world)
   },
   
   setVelocity(x, z) {
@@ -54,17 +57,32 @@ export let CharacterC = {
     this.rotation.y;
   },
   initPhysics(world) {
-    const shape = new CANNON.Box(new CANNON.Vec3(1, 2, 1));
+    const shape = new CANNON.Box(new CANNON.Vec3(0.3, 1, 0.3));
     this.physicsBody = new CANNON.Body({
       mass: 1, 
       position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
       shape: shape,
     });
     world.addBody(this.physicsBody);
+    this.physicsBody.addEventListener('collide', function(event){
+  
+      const collidedBody = event.body;
+      const srgv = Trig.triggerBody
+      document.querySelector(".isHideShop").style.display = "block";
+      console.log('detected')
+    });
   },
   updatePhysics() {
     if (this.physicsBody) {
       this.physicsBody.position.copy(this.position); 
+      // console.log(this.physicsBody.position)
     }
-  },
+  },  
 };
+
+
+                    
+// function collisionDetected(bodyA, bodyB) {
+  
+
+// }

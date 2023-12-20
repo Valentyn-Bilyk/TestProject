@@ -1,5 +1,9 @@
 import * as THREE from "three";
 import CANNON from "cannon";
+import { world } from "./physicsC";
+import { CharacterC } from "./CharacterC";
+import { Furniture } from "./furniture";
+
 
 export let MapC = {
   threeObj: null,
@@ -10,26 +14,26 @@ export let MapC = {
     this.threeObj.position.set(2.5, 0, 3.5);
 
     this.threeObj.getObjectByName('QuestArrow').visible = false
-    const coll = this.threeObj.getObjectByName('BoxColliders')
-    this.cooArr = coll.children
+
     Trig.init(this.threeObj.getObjectByName('Trigger_shop'))
+    Furniture.init(this.threeObj.getObjectByName('Furniture'))
   },
 }
 
 export let Trig = {
   shopTrigger: null,
   triggerBody: null,
-  position: { x: 0, y: 0, z: 0 },
+  position:{x:40.3, y:0, z: -5.1},
   init: function(gltf_ob) {
     this.shopTrigger = gltf_ob
-    this.position = this.shopTrigger.position
-
+    // this.position.set(37.06438446044922, 0, -5.483375549316406) 
+    Trig.initPhysics(world)
   },
   initPhysics(world) {
-    const shape = new CANNON.Box(new CANNON.Vec3(1, 2, 1));
+    const shape = new CANNON.Sphere(0.5);
     this.triggerBody = new CANNON.Body({
-      mass: 1, 
-      position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
+      mass: 0, 
+      position: new CANNON.Vec3(this.position.x,this.position.y,this.position.z),
       shape: shape,
     });
     world.addBody(this.triggerBody);

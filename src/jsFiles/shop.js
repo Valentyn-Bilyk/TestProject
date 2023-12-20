@@ -1,48 +1,59 @@
+import { Furniture } from "./furniture"
+
 const shopProduct = [
   {
     cardImg: 'db',
     cardName: 'Double Bed',
     cardPrice: 350,
+    id: '1'
   },
   {
     cardImg: 'arm',
     cardName: 'Armchair',
     cardPrice: 300,
+    id: '0'
   },
   {
     cardImg: 'dra',
     cardName: 'Drawers',
     cardPrice: 250,
+    id: '2'
   },
   {
     cardImg: 'sof',
     cardName: 'Sofa',
     cardPrice: 300,
+    id: '6'
   },
   {
     cardImg: 'tvhd',
     cardName: 'TV',
     cardPrice: 250,
+    id: '7'
   },
   {
     cardImg: 'yar',
     cardName: 'Yarn Basket',
     cardPrice: 200,
+    id: '8'
   },
   {
     cardImg: 'flx',
     cardName: 'Flaxplant',
     cardPrice: 100,
+    id: '3'
   },
   {
     cardImg: 'lmp',
     cardName: 'Lamp',
     cardPrice: 250,
+    id: '4'
   },
   {
     cardImg: 'rg',
     cardName: 'Rug',
     cardPrice: 100,
+    id: '5'
   },
 ]
 
@@ -80,9 +91,10 @@ const categories = document.querySelector('.categories')
 
 const boughtShopCards = []
 
-function createShopCard(imgName, cardName, price) {
+function createShopCard(imgName, cardName, price, id) {
   const shopCard = document.createElement('div')
   shopCard.classList.add('shopCard')
+  shopCard.id = id
   shopCard.selected = false
 
   const imgContainer = document.createElement('div')
@@ -115,7 +127,8 @@ function createShopCard(imgName, cardName, price) {
   cardPriceBg.append(cardPrice)
   cardPriceBg.append(shopCoinImg)
 
-  shopCard.onclick = () => {
+  shopCard.onclick = (event) => {
+    const itemId = event.currentTarget.id;
     if (!shopCard.selected && (money.innerHTML - price) >= 0) {
       shopCard.selected = true;
       shopCard.style.opacity = 0.5;
@@ -125,8 +138,7 @@ function createShopCard(imgName, cardName, price) {
 
       money.innerHTML -= price;
       boughtShopCards.push(shopCard);
-  
-      displayBoughtItems();
+      displayBoughtItems(itemId);
     } else if (shopCard.selected) {
       return;
     } else {
@@ -160,21 +172,24 @@ function createShopCategories(catName, catImg, catImgDark) {
   };
 }
 
-function displayBoughtItems() {
+function displayBoughtItems(itemId) {
   const boughtItemsContainer = document.querySelector('.boughtItems');
   boughtItemsContainer.innerHTML = '';
 
   boughtShopCards.forEach((item) => {
     const clonedItem = item.cloneNode(true);
     clonedItem.style.opacity = 1;
-
+    clonedItem.id = +itemId
+    console.log(clonedItem)
     const priceElement = clonedItem.querySelector('.cardPriceBg');
     if (priceElement) {
       priceElement.style.display = 'none';
     }
 
-    clonedItem.addEventListener('click', () => {
-
+    clonedItem.addEventListener('click', (event) => {
+      const itemId = event.currentTarget.id
+      Furniture.furnitureArr[+itemId].visible = true
+      console.log(itemId)
       boughtItemsContainer.removeChild(clonedItem);
     });
 
@@ -182,8 +197,8 @@ function displayBoughtItems() {
   });
 }
 
-shopProduct.forEach(({cardImg, cardName, cardPrice}) => {
-  createShopCard(cardImg, cardName, cardPrice)
+shopProduct.forEach(({cardImg, cardName, cardPrice, id}) => {
+  createShopCard(cardImg, cardName, cardPrice, id)
 })
 
 shopCategories.forEach(({catName, catImg, catImgDark}) => {
@@ -203,4 +218,9 @@ window.addEventListener('keydown', (event) => {
   if (event.code === 'Space') {
     boughtItemsContainer.style.display = 'flex'
   }
+
+  if (event.code === 'KeyP') {
+    boughtItemsContainer.style.display = 'none'
+  }
 })
+

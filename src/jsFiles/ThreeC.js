@@ -30,12 +30,21 @@ export const ThreeC = {
     this.camera.position.y = 7;
     this.camera.position.x = -2.5;
 
+  
+    const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 32), new THREE.MeshBasicMaterial({ color: 0x00ff00 }));
+    this.scene.add(sphere);
+    sphere.position.set(40.3, 0, -5.1)
+
+    const character = new THREE.Mesh(new THREE.BoxGeometry(0.3, 2, 0.3), new THREE.MeshBasicMaterial({ color: 0x00ff00 }));
+    this.scene.add(character);
+
+
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     this.renderer.setSize(sizes.width, sizes.height);
   },
   update() {
-    this.cameraUpdate()
-    this.renderer.render(this.scene, this.camera)
+    this.cameraUpdate();
+    this.renderer.render(this.scene, this.camera);
   },
   cameraUpdate() {
     this.camera.position.x += CharacterC.velocity.x;
