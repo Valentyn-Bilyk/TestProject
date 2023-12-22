@@ -5,6 +5,7 @@ import { MapC } from "./MapC";
 import { ThreeC } from "./ThreeC";
 import * as CANNON from 'cannon-es'
 import CannonDebugger from 'cannon-es-debugger'
+import TWEEN from '@tweenjs/tween.js'
 
 ThreeC.init();
 
@@ -50,7 +51,7 @@ function animate() {
     wsef++;
   } 
 
-
+  TWEEN.update(deltaTime)
   ThreeC.update();
   count++;
   requestAnimationFrame(animate);

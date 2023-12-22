@@ -11,6 +11,7 @@ export let CharacterC = {
   actionIdle: null,
   actionWalk: null,
   physicsBody: null,
+  quaternion: null,
   position: { x: 0, y: 0, z: 0 },
   rotation: { x: 0, y: 0, z: 0 },
   velocity: { x: 0, y: 0, z: 0 },
@@ -22,6 +23,9 @@ export let CharacterC = {
     this.position.set(-2.473, 0, -3.693)
 
     this.rotation = gltf_obj.scene.rotation;
+
+    this.quaternion = new CANNON.Quaternion();
+    
 
     this.animationMixer = new THREE.AnimationMixer(this.threeObj);
     this.actionIdle = this.animationMixer.clipAction(this.animations[2]);
@@ -66,16 +70,21 @@ export let CharacterC = {
     this.position.z += this.velocity.z;
 
     this.rotation.y;
+    this.quaternion.setFromEuler(this.rotation.x, this.rotation.y, this.rotation.z);
+
   },
   initPhysics(world) {
-    const shape = new CANNON.Box(new CANNON.Vec3(0.3, 1, 0.3));
+    const shape = new CANNON.Box(new CANNON.Vec3(0.3, 1.75, 0.3));
     this.physicsBody = new CANNON.Body({
       mass: 1, 
       position: new CANNON.Vec3(this.position.x, this.position.y, this.position.z),
       shape: shape
     });
+
+    this.physicsBody.quaternion.copy(this.quaternion);
     world.addBody(this.physicsBody);
-    this.physicsBody.addEventListener('collide', function(event){
+
+    this.physicsBody.addEventListener('collide', (event) => {
       
       const collidedBody = event.body;
       const triggerShop = Trig.triggerBody
@@ -92,27 +101,21 @@ export let CharacterC = {
       }
 
       if (collidedBody === collide) {
+        CharacterC.setVelocity(0, 0)
         console.log('ASDC ')
       }
 
       if (collidedBody === triggerShop) {
         document.querySelector(".isHideShop").style.display = "block";
       }
-      console.log('detected')
+
     });
+
   },
   updatePhysics() {
     if (this.physicsBody) {
       this.physicsBody.position.copy(this.position); 
-      // console.log(this.physicsBody.position)
+      this.physicsBody.quaternion.copy(this.quaternion);
     }
   },  
 };
-
-
-                    
-// function collisionDetected(bodyA, bodyB) {
-  
-
-// }
-//_Vector3 {x: 32.850785824070734, y: 0, z: -21.537729829287578}
