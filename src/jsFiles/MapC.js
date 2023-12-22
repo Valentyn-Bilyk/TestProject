@@ -1,9 +1,7 @@
 import * as CANNON from "cannon-es";
 import { world } from "./base";
-
 import { Furniture } from "./furniture";
 import { HouseC } from "./HouseC";
-import { CharacterC } from "./CharacterC";
 
 export let MapC = {
   threeObj: null,
@@ -18,7 +16,7 @@ export let MapC = {
     Furniture.init(this.threeObj.getObjectByName("Furniture"));
     HouseC.init(this.threeObj.getObjectByName("PlayerHouse"));
     HouseTrigger.init(this.threeObj.getObjectByName("Trigger_house_2"));
-    // TestCollider.init(this.threeObj.getObjectByName("BoxCollider"))
+
     const boxColliders = this.threeObj.getObjectByName("BoxColliders").children
     boxColliders.forEach(({name}) => TestCollider.init(this.threeObj.getObjectByName(name)))
   },
@@ -33,7 +31,7 @@ export let Trig = {
     Trig.initPhysics(world);
   },
   initPhysics(world) {
-    const shape = new CANNON.Sphere(0.5);
+    const shape = new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5));
     this.triggerBody = new CANNON.Body({
       mass: 0,
       position: new CANNON.Vec3(
@@ -42,6 +40,7 @@ export let Trig = {
         this.position.z
       ),
       shape: shape,
+      isTrigger: true
     });
     world.addBody(this.triggerBody);
   },
@@ -65,6 +64,7 @@ export let HouseTrigger = {
         this.position.z
       ),
       shape: shape,
+      isTrigger: true,
     });
     world.addBody(this.triggerBody);
   },

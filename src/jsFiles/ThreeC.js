@@ -26,9 +26,9 @@ export const ThreeC = {
     this.scene.add(this.directionalLight);
 
     this.camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
-    this.camera.position.z = 3;
-    this.camera.position.y = 7.5;
-    this.camera.position.x = -5;
+    // this.camera.position.z = 3;
+    // this.camera.position.y = 7.5;
+    // this.camera.position.x = -5;
 
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     this.renderer.setSize(sizes.width, sizes.height);
@@ -38,15 +38,19 @@ export const ThreeC = {
     this.renderer.render(this.scene, this.camera);
   },
   cameraUpdate() {
-    this.camera.position.x += CharacterC.velocity.x;
-    this.camera.position.z += CharacterC.velocity.z;
-
-    this.camera.lookAt(
-      new THREE.Vector3(
-        CharacterC.position.x,
-        CharacterC.position.y,
-        CharacterC.position.z
-      )
-    );
+    if (CharacterC.physicsBody && this.camera.position) {
+      const characterPosition = CharacterC.position;
+      const offset = new THREE.Vector3(-3, 7.5, 6);
+      // this.camera.position.x = CharacterC.physicsBody.velocity.x;
+      // this.camera.position.z = CharacterC.physicsBody.velocity.z;
+      this.camera.position.copy(characterPosition).add(offset)
+      this.camera.lookAt(
+        new THREE.Vector3(
+          CharacterC.physicsBody.position.x,
+          CharacterC.position.y,
+          CharacterC.physicsBody.position.z
+        )
+      );
+    }
   },
 };

@@ -10,9 +10,9 @@ export const Joy = {
 Joy.manager.on("move", function (evt, nipple) {
   let k = 0;
 
-  if (nipple.force > 0 && nipple.force <= 0.2) k = 0.02;
-  if (nipple.force > 0.2 && nipple.force <= 0.5) k = 0.05;
-  if (nipple.force > 0.5) k = 0.1;
+  if (nipple.force > 0 && nipple.force <= 0.2) k = 1;
+  if (nipple.force > 0.2 && nipple.force <= 0.5) k = 2;
+  if (nipple.force > 0.5) k = 5;
 
   let x = Math.cos(nipple.angle.radian) * k;
   let z = -Math.sin(nipple.angle.radian) * k;
@@ -21,12 +21,12 @@ Joy.manager.on("move", function (evt, nipple) {
     CharacterC.rotation.y = nipple.angle.radian + 1;
     CharacterC.startWalk();
   }
-  CharacterC.setVelocity(x, z);
+  CharacterC.setPhysicsBodyVelocity(x, z);
 });
 
 Joy.manager.on("end", function (evt, nipple) {
   let x = 0;
   let z = 0;
-  CharacterC.setVelocity(x, z);
+  CharacterC.setPhysicsBodyVelocity(x, z);
   CharacterC.startIdle();
 });

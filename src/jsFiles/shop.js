@@ -191,6 +191,7 @@ function displayBoughtItems(itemId, shopCard) {
   if (title) title.classList.add('title')
   
   clonedItem.addEventListener("click", (event) => {
+    boughtShopCardsCount--
     const itemId = event.currentTarget.id;
     Furniture.showBoughtFurniture(itemId)
     console.log(itemId);

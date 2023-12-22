@@ -1,4 +1,5 @@
 import TWEEN from '@tweenjs/tween.js'
+import { boughtShopCardsCount } from './shop'
 
 export let Furniture = {
   threeObj: null,
@@ -9,6 +10,7 @@ export let Furniture = {
     this.furnitureArr.forEach(el => el.visible = false)
   },
   showBoughtFurniture(itemId) {
+    if (boughtShopCardsCount === 0) document.querySelector(".boughtItemsContainer").style.display = 'none'
     const currentItem = this.furnitureArr[itemId];
     currentItem.visible = true;
   
@@ -19,7 +21,7 @@ export let Furniture = {
     const tween = new TWEEN.Tween(startScale)
       .to(targetScale, 2000)
       .easing(TWEEN.Easing.Bounce.Out);
-      
+
     console.log(tween)
 
     tween.onUpdate((value) => {

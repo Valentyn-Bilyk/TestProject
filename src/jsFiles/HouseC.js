@@ -31,6 +31,7 @@ export let isVisibleWalls = {
       mass: 0, 
       position: new CANNON.Vec3(this.position.x,this.position.y,this.position.z),
       shape: shape,
+      isTrigger: true
     });
     world.addBody(this.triggerBody);
   }
