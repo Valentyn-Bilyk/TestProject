@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import * as CANNON from "cannon-es";
-import { HouseTrigger, ShopTrigger, WallsTrigger} from "./GameTriggers";
+import { HouseTrigger, ShopTrigger, WallsTrigger } from "./GameTriggers";
 import { world } from "./Core";
 import { HouseC } from "./HouseC";
 
@@ -56,16 +56,20 @@ export let CharacterC = {
     world.addBody(this.physicsBody);
 
     this.physicsBody.addEventListener("collide", (event) => {
-      const collidedBody = event.body;
-      const triggerShop = ShopTrigger.triggerBody;
-      const houseWalls = WallsTrigger.triggerBody;
-      const houseTrigger = HouseTrigger.triggerBody;
-
-      if (collidedBody === houseTrigger)
-        document.querySelector(".boughtItemsContainer").style.display = "flex";
+      const collidedBody = event.body.id;
+      const triggerShop = ShopTrigger.triggerBody.id;
+      const houseWalls = WallsTrigger.triggerBody.id;
+      const houseTrigger = HouseTrigger.triggerBody.id;
+      
       if (collidedBody === houseWalls) HouseC.hideWalls();
-      if (collidedBody === triggerShop)
+      if (collidedBody === houseTrigger) {
+        document.querySelector(".boughtItemsContainer").style.display = "flex";
+        document.querySelector(".moveController").style.display = "none";
+      }
+      if (collidedBody === triggerShop) {
         document.querySelector(".isHideShop").style.display = "block";
+        document.querySelector(".moveController").style.display = "none";
+      }
     });
   },
   setPhysicsBodyVelocity(x, z) {

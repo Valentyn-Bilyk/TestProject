@@ -35,10 +35,16 @@ export const ThreeC = {
     this.renderer.render(this.scene, this.camera);
   },
   cameraUpdate() {
+    const isLandscape = window.matchMedia("(orientation: landscape)").matches;
+    const offsetLandscape = new THREE.Vector3(-3, 8, 7);
+    const offsetPortrait = new THREE.Vector3(-3, 7.5, 6);
+    const fovLandscape = 45;
+    const fovPortrait = 75;
+
+    const offset = isLandscape ? offsetLandscape : offsetPortrait;
+    const fov = isLandscape ? fovLandscape : fovPortrait;
     if (CharacterC.physicsBody && this.camera.position) {
       const characterPosition = CharacterC.position;
-      const offset = new THREE.Vector3(-3, 7.5, 6);
-      
       this.camera.position.copy(characterPosition).add(offset)
       this.camera.lookAt(
         new THREE.Vector3(
@@ -47,6 +53,8 @@ export const ThreeC = {
           CharacterC.physicsBody.position.z
         )
       );
+      this.camera.fov = fov;
+      this.camera.updateProjectionMatrix();
     }
   },
 };

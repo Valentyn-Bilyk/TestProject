@@ -180,7 +180,6 @@ function displayBoughtItems(itemId, shopCard) {
     boughtShopCardsCount--;
     const itemId = event.currentTarget.id;
     FurnitureC.showBoughtFurniture(itemId);
-    console.log(itemId);
     boughtItemsContainer.removeChild(clonedItem);
   });
 
@@ -201,4 +200,10 @@ first.classList.add("catBgLight");
 
 document.querySelector(".shopCloseButton").onclick = function () {
   document.querySelector(".isHideShop").style.display = "none";
+  document.querySelector(".moveController").style.display = 'block';
+};
+
+document.querySelector('.closeBoughtItems').onclick = function () {
+  boughtItemsContainer.style.display = "none";
+  document.querySelector(".moveController").style.display = 'block';
 };

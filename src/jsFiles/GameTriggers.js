@@ -36,6 +36,7 @@ export const ShopTrigger = new GameTrigger(
   { x: 37.8, y: 0, z: -8.6 },
   [0.5, 0.5, 0.5]
 );
+
 export const HouseTrigger = new GameTrigger(
   { x: 30.7, y: 0, z: -30.1 },
   [0.5, 0.5, 0.5]
@@ -44,4 +45,4 @@ export const HouseTrigger = new GameTrigger(
 export const WallsTrigger = new GameTrigger(
   { x: 30.3, y: 0, z: -24.6 },
   [1, 1, 1]
-)
+);
