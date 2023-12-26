@@ -26,9 +26,6 @@ export const ThreeC = {
     this.scene.add(this.directionalLight);
 
     this.camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
-    // this.camera.position.z = 3;
-    // this.camera.position.y = 7.5;
-    // this.camera.position.x = -5;
 
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     this.renderer.setSize(sizes.width, sizes.height);
@@ -41,8 +38,7 @@ export const ThreeC = {
     if (CharacterC.physicsBody && this.camera.position) {
       const characterPosition = CharacterC.position;
       const offset = new THREE.Vector3(-3, 7.5, 6);
-      // this.camera.position.x = CharacterC.physicsBody.velocity.x;
-      // this.camera.position.z = CharacterC.physicsBody.velocity.z;
+      
       this.camera.position.copy(characterPosition).add(offset)
       this.camera.lookAt(
         new THREE.Vector3(

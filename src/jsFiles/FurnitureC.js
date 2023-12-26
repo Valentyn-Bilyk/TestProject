@@ -1,7 +1,7 @@
 import TWEEN from '@tweenjs/tween.js'
-import { boughtShopCardsCount } from './shop'
+import { boughtShopCardsCount } from './ShopLogic'
 
-export let Furniture = {
+export let FurnitureC = {
   threeObj: null,
   furnitureArr: [],
   init: function(gltf_obj) {

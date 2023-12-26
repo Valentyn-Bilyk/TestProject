@@ -1,4 +1,4 @@
-import { Furniture } from "./furniture";
+import { FurnitureC } from "./FurnitureC";
 
 const shopProduct = [
   {
@@ -89,7 +89,7 @@ boughtItemsContainer.style.display = "none";
 const shopCards = document.querySelector(".shopCards");
 const categories = document.querySelector(".categories");
 
-export let boughtShopCardsCount = 0
+export let boughtShopCardsCount = 0;
 
 function createShopCard(imgName, cardName, price, id) {
   const shopCard = document.createElement("div");
@@ -137,7 +137,7 @@ function createShopCard(imgName, cardName, price, id) {
       shopCoinImg.classList.add("bought");
 
       money.innerHTML -= price;
-      boughtShopCardsCount++
+      boughtShopCardsCount++;
       displayBoughtItems(itemId, shopCard);
     } else if (shopCard.selected) {
       return;
@@ -176,24 +176,24 @@ function displayBoughtItems(itemId, shopCard) {
   const clonedItem = shopCard.cloneNode(true);
   clonedItem.style.opacity = 1;
   clonedItem.id = +itemId;
-  clonedItem.classList.add('boughtCard')
+  clonedItem.classList.add("boughtCard");
 
   const priceElement = clonedItem.querySelector(".cardPriceBg");
   if (priceElement) priceElement.style.display = "none";
-  
+
   const imgContainer = clonedItem.querySelector(".imgContainer");
   if (imgContainer) imgContainer.style.display = "unset";
-  
+
   const img = clonedItem.querySelector(".cardImg");
-  if (img) img.classList.add('boughtImg')
+  if (img) img.classList.add("boughtImg");
 
   const title = clonedItem.querySelector(".cardTitle");
-  if (title) title.classList.add('title')
-  
+  if (title) title.classList.add("title");
+
   clonedItem.addEventListener("click", (event) => {
-    boughtShopCardsCount--
+    boughtShopCardsCount--;
     const itemId = event.currentTarget.id;
-    Furniture.showBoughtFurniture(itemId)
+    FurnitureC.showBoughtFurniture(itemId);
     console.log(itemId);
     boughtItemsContainer.removeChild(clonedItem);
   });
@@ -216,15 +216,3 @@ first.classList.add("catBgLight");
 document.querySelector(".shopCloseButton").onclick = function () {
   document.querySelector(".isHideShop").style.display = "none";
 };
-// document.querySelector(".isHideShop").style.display = "block";
-
-window.addEventListener("keydown", (event) => {
-  // if (event.code === "Space") {
-  //   boughtItemsContainer.style.display = "flex";
-  // }
-
-  if (event.code === "KeyP") {
-    boughtItemsContainer.style.display = "none";
-  }
-});
-// boughtItemsContainer.style.display = "flex";

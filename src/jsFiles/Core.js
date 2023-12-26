@@ -4,15 +4,13 @@ import { CharacterC } from "./CharacterC";
 import { MapC } from "./MapC";
 import { ThreeC } from "./ThreeC";
 import * as CANNON from 'cannon-es'
-import CannonDebugger from 'cannon-es-debugger'
+// import CannonDebugger from 'cannon-es-debugger'
 import TWEEN from '@tweenjs/tween.js'
 
 ThreeC.init();
 
 export const world = new CANNON.World()
-export const cannonDebugger = new CannonDebugger(ThreeC.scene, world, {
-    // options...
-  })
+// export const cannonDebugger = new CannonDebugger(ThreeC.scene, world, {})
 
 const gltfLoader = new GLTFLoader();
 
@@ -26,34 +24,22 @@ gltfLoader.load("/GLB/Character.glb", (character) => {
   CharacterC.init(character);
 });
 
-const progressBar = document.querySelector(".progressUpdate");
-function updateProgress(percent) {
-  progressBar.style.width = percent + "vw";
-}
-
-let count = 0;
 const clock = new THREE.Clock();
 let previousTime = 0;
-let wsef = 0;
+
 function animate() {
   const elapsedTime = clock.getElapsedTime();
   const deltaTime = elapsedTime - previousTime;
   previousTime = elapsedTime;
 
   world.fixedStep();
-  cannonDebugger.update();
+  // cannonDebugger.update();
 
-  if(CharacterC)
-    CharacterC.update(deltaTime);
-
-  if (wsef < 41) {
-    updateProgress(wsef);
-    wsef++;
-  } 
+  if(CharacterC) CharacterC.update(deltaTime);
 
   TWEEN.update(deltaTime)
   ThreeC.update();
-  count++;
+
   requestAnimationFrame(animate);
 }
 
