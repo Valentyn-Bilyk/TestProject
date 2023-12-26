@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import * as CANNON from "cannon-es";
-import { HouseTrigger, ShopTrigger } from "./MapC";
+import { HouseTrigger, ShopTrigger, WallsTrigger} from "./GameTriggers";
 import { world } from "./Core";
-import { HouseC, isVisibleWalls } from "./HouseC";
+import { HouseC } from "./HouseC";
 
 export let CharacterC = {
   animations: [],
@@ -13,7 +13,6 @@ export let CharacterC = {
   physicsBody: null,
   position: { x: 0, y: 0, z: 0 },
   rotation: { x: 0, y: 0, z: 0 },
-  velocity: { x: 0, y: 0, z: 0 },
   init: function (gltf_obj) {
     this.threeObj = gltf_obj.scene;
     this.animations = gltf_obj.animations;
@@ -59,7 +58,7 @@ export let CharacterC = {
     this.physicsBody.addEventListener("collide", (event) => {
       const collidedBody = event.body;
       const triggerShop = ShopTrigger.triggerBody;
-      const houseWalls = isVisibleWalls.triggerBody;
+      const houseWalls = WallsTrigger.triggerBody;
       const houseTrigger = HouseTrigger.triggerBody;
 
       if (collidedBody === houseTrigger)

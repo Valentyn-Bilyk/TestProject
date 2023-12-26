@@ -1,3 +1,28 @@
+.container,
+.titleContainer,
+.shopCard,
+.db,
+.arm,
+.dra,
+.sof,
+.tvhd,
+.yar,
+.flx,
+.lmp,
+.rg,
+.cardPriceBg,
+.shopCoinImg,
+.bought,
+.catBg,
+.catBgLight,
+.allImg,
+.sofaImg,
+.bedImg,
+.gardenImg {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
 .container {
   position: fixed;
   top: 15vh;
@@ -12,7 +37,6 @@
   height: 83vh;
 
   background-image: url("../../static/UI/bg1.png");
-  background-size: 100% 100%;
   z-index: 1;
 }
 
@@ -30,8 +54,6 @@
   z-index: 2;
 
   background-image: url("../../static/UI/Title.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .shopTitle {
@@ -54,22 +76,21 @@
 
   background: none;
   background-image: url("../../static/UI/CloseButton.webp");
+  border: none;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  border: none;
-
   z-index: 2;
 }
 
 .shopCards {
   display: flex;
-   align-content: flex-start;
+  align-content: flex-start;
   justify-content: center;
   flex-wrap: wrap;
 
   width: 90%;
   height: 85%;
-  
+
   padding-top: 1%;
   margin-top: 6vh;
 
@@ -88,8 +109,6 @@
   margin-bottom: 5%;
 
   background-image: url(../../static/UI/bg_buttonShop.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .imgContainer {
@@ -114,56 +133,38 @@
 
 .db {
   background-image: url(../../static/UI/icon_shopItem_DoubleBed.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .arm {
   background-image: url(../../static/UI/icon_shopItem_Armchair.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .dra {
   background-image: url(../../static/UI/icon_shopItem_Drawers.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .sof {
   background-image: url(../../static/UI/icon_shopItem_Sofa.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .tvhd {
   background-image: url(../../static/UI/icon_shopItem_TV.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .yar {
   background-image: url(../../static/UI/icon_shopItem_YarnBasket.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .flx {
   background-image: url(../../static/UI/icon_shopItem_FlaxPlant.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .lmp {
   background-image: url(../../static/UI/icon_shopItem_Lamp.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .rg {
   background-image: url(../../static/UI/icon_shopItem_Rug.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .cardTitle {
@@ -182,8 +183,6 @@
   height: 25%;
 
   background-image: url(../../static/UI/buyButtonShop.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .cardPrice {
@@ -203,8 +202,6 @@
   height: 80%;
 
   background-image: url(../../static/UI/icon_MultipleSoftCurrency.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .bought {
@@ -215,10 +212,7 @@
   width: 25%;
   height: 58%;
 
-
   background-image: url(../../static/UI/circle_OKmark.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .categories {
@@ -243,9 +237,6 @@
 
   width: 16vw;
   height: 6vh;
-
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .catBg {
@@ -256,52 +247,20 @@
   background-image: url(../../static/UI/buyButtonShop.png);
 }
 
-.allImgDark {
-  background-image: url(../../static/UI/icon_shopAll_Dark.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
 .allImg {
   background-image: url(../../static/UI/icon_shopAll_active.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .sofaImg {
-  background-image: url(../../static/UI/icon_shopCategory_Sofa.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-.sofaImgDark {
   background-image: url(../../static/UI/icon_shopCategory_Sofa_Dark.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
-.badImg {
-  background-image: url(../../static/UI/icon_shopCategory_Bed.webp);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-.badImgDark {
+.bedImg {
   background-image: url(../../static/UI/icon_shopCategory_Bed_Dark.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .gardenImg {
-  background-image: url(../../static/UI/icon_shopCategory_fence.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-.gardenImgDark {
   background-image: url(../../static/UI/icon_shopCategory_fence_Dark.png);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 .boughtItemsContainer {
@@ -312,7 +271,6 @@
 
 .boughtItems {
   margin-top: 5%;
-  
 }
 
 .boughtCard {
@@ -369,11 +327,11 @@
   }
 
   .shopCard {
-   height: 42%;
-   width: 16%;
-   margin-bottom: 2%;
+    height: 42%;
+    width: 16%;
+    margin-bottom: 2%;
   }
- 
+
   .cardPrice {
     font-size: 3vh;
   }
@@ -386,12 +344,12 @@
   .catBg,
   .catBgLight {
     width: 12vw;
-  height: 10vh;
+    height: 10vh;
   }
 
   .img {
     width: 7vh;
-  height: 7vh;
+    height: 7vh;
   }
 
   .boughtItemsContainer {
@@ -408,6 +366,6 @@
 
   .boughtCard {
     width: 13%;
-  height: 90%;
+    height: 90%;
   }
 }

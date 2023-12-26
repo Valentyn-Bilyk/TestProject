@@ -2,10 +2,12 @@ import * as CANNON from "cannon-es";
 import { world } from "./Core";
 import { FurnitureC } from "./FurnitureC";
 import { HouseC } from "./HouseC";
+import { HouseTrigger, ShopTrigger } from "./GameTriggers";
 
 export let MapC = {
   threeObj: null,
-  cooArr: [],
+  shopTrigger: null,
+  houseTrigger: null,
   init: function (gltf_obj) {
     this.threeObj = gltf_obj.scene;
 
@@ -13,66 +15,20 @@ export let MapC = {
     this.threeObj.getObjectByName("Trigger_house_1").visible = false;
     this.threeObj.getObjectByName("BoxColliders").visible = false
 
-    ShopTrigger.init(this.threeObj.getObjectByName("Trigger_shop"));
+    this.shopTrigger = this.threeObj.getObjectByName("Trigger_shop");
+    this.houseTrigger = this.threeObj.getObjectByName("Trigger_house_2");
     FurnitureC.init(this.threeObj.getObjectByName("Furniture"));
     HouseC.init(this.threeObj.getObjectByName("PlayerHouse"));
-    HouseTrigger.init(this.threeObj.getObjectByName("Trigger_house_2"));
 
     const boxColliders = this.threeObj.getObjectByName("BoxColliders").children;
     boxColliders.forEach(({ name }) =>
       MapColliders.init(this.threeObj.getObjectByName(name))
     );
-    console.log(this.threeObj)
   },
 };
 
-export let ShopTrigger = {
-  shopTrigger: null,
-  triggerBody: null,
-  position: { x: 37.8, y: 0, z: -8.6 },
-  init: function (gltf_ob) {
-    this.shopTrigger = gltf_ob;
-    ShopTrigger.initPhysics(world);
-  },
-  initPhysics(world) {
-    const shape = new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5));
-    this.triggerBody = new CANNON.Body({
-      mass: 0,
-      position: new CANNON.Vec3(
-        this.position.x,
-        this.position.y,
-        this.position.z
-      ),
-      shape: shape,
-      isTrigger: true,
-    });
-    world.addBody(this.triggerBody);
-  },
-};
-
-export let HouseTrigger = {
-  houseTrigger: null,
-  triggerBody: null,
-  position: { x: 30.7, y: 0, z: -30.1 },
-  init: function (gltf_ob) {
-    this.houseTrigger = gltf_ob;
-    HouseTrigger.initPhysics(world);
-  },
-  initPhysics(world) {
-    const shape = new CANNON.Sphere(0.5);
-    this.triggerBody = new CANNON.Body({
-      mass: 0,
-      position: new CANNON.Vec3(
-        this.position.x,
-        this.position.y,
-        this.position.z
-      ),
-      shape: shape,
-      isTrigger: true,
-    });
-    world.addBody(this.triggerBody);
-  },
-};
+ShopTrigger.initObj(MapC.shopTrigger)
+HouseTrigger.initObj(MapC.houseTrigger)
 
 export let MapColliders = {
   testCollider: null,

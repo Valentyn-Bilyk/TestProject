@@ -61,22 +61,18 @@ const shopCategories = [
   {
     catName: "all",
     catImg: "allImg",
-    catImgDark: "allImgDark",
   },
   {
-    catName: "bad",
-    catImg: "badImg",
-    catImgDark: "allImgDark",
+    catName: "bed",
+    catImg: "bedImg",
   },
   {
     catName: "sofa",
     catImg: "sofaImg",
-    catImgDark: "sofaImgDark",
   },
   {
     catName: "garden",
     catImg: "gardenImg",
-    catImgDark: "allImgDark",
   },
 ];
 
@@ -147,7 +143,7 @@ function createShopCard(imgName, cardName, price, id) {
   };
 }
 
-function createShopCategories(catName, catImg, catImgDark) {
+function createShopCategories(catName, catImg) {
   const catBg = document.createElement("div");
   catBg.classList.add("catBg");
   catBg.classList.add(catName);
@@ -158,16 +154,6 @@ function createShopCategories(catName, catImg, catImgDark) {
 
   categories.append(catBg);
   catBg.append(img);
-
-  catBg.onclick = () => {
-    document.querySelectorAll(".catBgLight").forEach((element) => {
-      element.classList.remove("catBgLight");
-      element.classList.add("catBg");
-    });
-
-    catBg.classList.remove("catBg");
-    catBg.classList.add("catBgLight");
-  };
 }
 
 function displayBoughtItems(itemId, shopCard) {
