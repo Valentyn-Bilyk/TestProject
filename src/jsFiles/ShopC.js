@@ -1,91 +1,10 @@
 import { FurnitureC } from "./FurnitureC";
+import {shopProduct, shopCategories, getDOMElements} from './Shop'
 
-const shopProduct = [
-  {
-    cardImg: "db",
-    cardName: "Double Bed",
-    cardPrice: 350,
-    id: "1",
-  },
-  {
-    cardImg: "arm",
-    cardName: "Armchair",
-    cardPrice: 300,
-    id: "0",
-  },
-  {
-    cardImg: "dra",
-    cardName: "Drawers",
-    cardPrice: 250,
-    id: "2",
-  },
-  {
-    cardImg: "sof",
-    cardName: "Sofa",
-    cardPrice: 300,
-    id: "6",
-  },
-  {
-    cardImg: "tvhd",
-    cardName: "TV",
-    cardPrice: 250,
-    id: "7",
-  },
-  {
-    cardImg: "yar",
-    cardName: "Yarn Basket",
-    cardPrice: 200,
-    id: "8",
-  },
-  {
-    cardImg: "flx",
-    cardName: "Flaxplant",
-    cardPrice: 100,
-    id: "3",
-  },
-  {
-    cardImg: "lmp",
-    cardName: "Lamp",
-    cardPrice: 250,
-    id: "4",
-  },
-  {
-    cardImg: "rg",
-    cardName: "Rug",
-    cardPrice: 100,
-    id: "5",
-  },
-];
-
-const shopCategories = [
-  {
-    catName: "all",
-    catImg: "allImg",
-  },
-  {
-    catName: "bed",
-    catImg: "bedImg",
-  },
-  {
-    catName: "sofa",
-    catImg: "sofaImg",
-  },
-  {
-    catName: "garden",
-    catImg: "gardenImg",
-  },
-];
-
-const money = document.querySelector(".money");
+export let boughtItemsCounter = 0;
+const {money, boughtItemsContainer, shopCards, categories} = getDOMElements()
 money.innerHTML = 1700;
-
-const boughtItemsContainer = document.querySelector(".boughtItemsContainer");
 boughtItemsContainer.style.display = "none";
-
-const shopCards = document.querySelector(".shopCards");
-const categories = document.querySelector(".categories");
-
-export let boughtShopCardsCount = 0;
 
 function createShopCard(imgName, cardName, price, id) {
   const shopCard = document.createElement("div");
@@ -97,7 +16,8 @@ function createShopCard(imgName, cardName, price, id) {
   imgContainer.classList.add("imgContainer");
 
   const cardImg = document.createElement("div");
-  cardImg.classList.add("cardImg", imgName);
+  cardImg.classList.add("cardImg");
+  cardImg.style.backgroundImage = imgName;
 
   const cardTitle = document.createElement("h3");
   cardTitle.classList.add("cardTitle");
@@ -133,7 +53,7 @@ function createShopCard(imgName, cardName, price, id) {
       shopCoinImg.classList.add("bought");
 
       money.innerHTML -= price;
-      boughtShopCardsCount++;
+      boughtItemsCounter++;
       displayBoughtItems(itemId, shopCard);
     } else if (shopCard.selected) {
       return;
@@ -143,14 +63,14 @@ function createShopCard(imgName, cardName, price, id) {
   };
 }
 
-function createShopCategories(catName, catImg) {
+function createShopCategories(catBgImg, catImg) {
   const catBg = document.createElement("div");
   catBg.classList.add("catBg");
-  catBg.classList.add(catName);
+  catBg.style.backgroundImage = catBgImg;
 
   const img = document.createElement("div");
   img.classList.add("img");
-  img.classList.add(catImg);
+  img.style.backgroundImage = catImg;
 
   categories.append(catBg);
   catBg.append(img);
@@ -177,7 +97,7 @@ function displayBoughtItems(itemId, shopCard) {
   if (title) title.classList.add("title");
 
   clonedItem.addEventListener("click", (event) => {
-    boughtShopCardsCount--;
+    boughtItemsCounter--;
     const itemId = event.currentTarget.id;
     FurnitureC.showBoughtFurniture(itemId);
     boughtItemsContainer.removeChild(clonedItem);
@@ -190,20 +110,6 @@ shopProduct.forEach(({ cardImg, cardName, cardPrice, id }) => {
   createShopCard(cardImg, cardName, cardPrice, id);
 });
 
-shopCategories.forEach(({ catName, catImg, catImgDark }) => {
-  createShopCategories(catName, catImg, catImgDark);
+shopCategories.forEach(({ catBgImg, catImg }) => {
+  createShopCategories(catBgImg, catImg);
 });
-
-const first = document.querySelector(".all");
-first.classList.remove("catBg");
-first.classList.add("catBgLight");
-
-document.querySelector(".shopCloseButton").onclick = function () {
-  document.querySelector(".isHideShop").style.display = "none";
-  document.querySelector(".moveController").style.display = 'block';
-};
-
-document.querySelector('.closeBoughtItems').onclick = function () {
-  boughtItemsContainer.style.display = "none";
-  document.querySelector(".moveController").style.display = 'block';
-};

@@ -1,8 +1,7 @@
 import * as THREE from "three";
 import * as CANNON from "cannon-es";
-import { HouseTrigger, ShopTrigger, WallsTrigger } from "./GameTriggers";
 import { world } from "./Core";
-import { HouseC } from "./HouseC";
+import { handleCollision } from "./UIC";
 
 export let CharacterC = {
   animations: [],
@@ -25,7 +24,6 @@ export let CharacterC = {
     this.animationMixer = new THREE.AnimationMixer(this.threeObj);
     this.actionIdle = this.animationMixer.clipAction(this.animations[2]);
     this.actionWalk = this.animationMixer.clipAction(this.animations[4]);
-
     CharacterC.initPhysics(world);
   },
   startWalk() {
@@ -35,6 +33,9 @@ export let CharacterC = {
   startIdle() {
     this.actionWalk.stop();
     this.actionIdle.play();
+  },
+  setActionWalkSpeed(k) {
+    this.actionWalk.timeScale = k
   },
   update: function (deltaTime) {
     if (!this.threeObj) return;
@@ -55,22 +56,7 @@ export let CharacterC = {
     });
     world.addBody(this.physicsBody);
 
-    this.physicsBody.addEventListener("collide", (event) => {
-      const collidedBody = event.body.id;
-      const triggerShop = ShopTrigger.triggerBody.id;
-      const houseWalls = WallsTrigger.triggerBody.id;
-      const houseTrigger = HouseTrigger.triggerBody.id;
-      
-      if (collidedBody === houseWalls) HouseC.hideWalls();
-      if (collidedBody === houseTrigger) {
-        document.querySelector(".boughtItemsContainer").style.display = "flex";
-        document.querySelector(".moveController").style.display = "none";
-      }
-      if (collidedBody === triggerShop) {
-        document.querySelector(".isHideShop").style.display = "block";
-        document.querySelector(".moveController").style.display = "none";
-      }
-    });
+    this.physicsBody.addEventListener('collide', handleCollision)
   },
   setPhysicsBodyVelocity(x, z) {
     this.physicsBody.velocity = new CANNON.Vec3(x, 0, z);

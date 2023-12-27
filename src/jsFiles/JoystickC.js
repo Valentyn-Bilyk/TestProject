@@ -18,9 +18,10 @@ Joy.manager.on("move", function (evt, nipple) {
   let z = -Math.sin(nipple.angle.radian) * k;
 
   if (nipple.force > 0) {
-    CharacterC.rotation.y = nipple.angle.radian + 1;
+    CharacterC.rotation.y = nipple.angle.radian + 1.5;
     CharacterC.startWalk();
   }
+  CharacterC.setActionWalkSpeed(k)
   CharacterC.setPhysicsBodyVelocity(x, z);
 });
 

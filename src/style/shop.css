@@ -1,24 +1,12 @@
 .container,
 .titleContainer,
 .shopCard,
-.db,
-.arm,
-.dra,
-.sof,
-.tvhd,
-.yar,
-.flx,
-.lmp,
-.rg,
+.cardImg,
+.img,
 .cardPriceBg,
 .shopCoinImg,
 .bought,
-.catBg,
-.catBgLight,
-.allImg,
-.sofaImg,
-.bedImg,
-.gardenImg {
+.catBg {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -135,42 +123,6 @@
   height: 90%;
 }
 
-.db {
-  background-image: url(../../static/UI/icon_shopItem_DoubleBed.webp);
-}
-
-.arm {
-  background-image: url(../../static/UI/icon_shopItem_Armchair.webp);
-}
-
-.dra {
-  background-image: url(../../static/UI/icon_shopItem_Drawers.webp);
-}
-
-.sof {
-  background-image: url(../../static/UI/icon_shopItem_Sofa.webp);
-}
-
-.tvhd {
-  background-image: url(../../static/UI/icon_shopItem_TV.webp);
-}
-
-.yar {
-  background-image: url(../../static/UI/icon_shopItem_YarnBasket.webp);
-}
-
-.flx {
-  background-image: url(../../static/UI/icon_shopItem_FlaxPlant.webp);
-}
-
-.lmp {
-  background-image: url(../../static/UI/icon_shopItem_Lamp.webp);
-}
-
-.rg {
-  background-image: url(../../static/UI/icon_shopItem_Rug.webp);
-}
-
 .cardTitle {
   color: #404040;
   text-align: center;
@@ -233,38 +185,13 @@
   height: 7vw;
 }
 
-.catBg,
-.catBgLight {
+.catBg {
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: 16vw;
   height: 6vh;
-}
-
-.catBg {
-  background-image: url(../../static/UI/button_sectionShop_Inactive.png);
-}
-
-.catBgLight {
-  background-image: url(../../static/UI/buyButtonShop.png);
-}
-
-.allImg {
-  background-image: url(../../static/UI/icon_shopAll_active.webp);
-}
-
-.sofaImg {
-  background-image: url(../../static/UI/icon_shopCategory_Sofa_Dark.png);
-}
-
-.bedImg {
-  background-image: url(../../static/UI/icon_shopCategory_Bed_Dark.png);
-}
-
-.gardenImg {
-  background-image: url(../../static/UI/icon_shopCategory_fence_Dark.png);
 }
 
 .boughtItemsContainer {
@@ -351,8 +278,7 @@
     margin-right: 5px;
   }
 
-  .catBg,
-  .catBgLight {
+  .catBg {
     width: 12vw;
     height: 10vh;
   }
