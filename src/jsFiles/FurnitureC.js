@@ -1,6 +1,7 @@
-import TWEEN from "@tweenjs/tween.js";
+import { MapC } from "./MapC";
 import { boughtItemsCounter } from "./ShopC";
-import { playAppearFurnitureAnimation } from "./TweenC";
+import { handleCloseShopAnimation, handleShowFurnitureItem } from "./HandleC";
+import { Joy } from "./JoystickC";
 
 export const FurnitureC = {
   threeObj: null,
@@ -12,25 +13,13 @@ export const FurnitureC = {
   },
   showBoughtFurniture(itemId) {
     if (boughtItemsCounter < 1) {
-      document.querySelector(".boughtItemsContainer").style.display = "none";
-      document.querySelector(".moveController").style.display = "block";
+      MapC.hideHouseTrigger()
+      Joy.nippleUnlock()
+      handleCloseShopAnimation(".boughtItemsContainer", "none");
     }
     const currentItem = this.furnitureArr[itemId];
     currentItem.visible = true;
 
-    const startScale = 0;
-    const targetScale = 1;
-    const duration = 2000;
-    const easing = TWEEN.Easing.Bounce.Out;
-    
-    currentItem.scale.set(startScale, startScale, startScale);
-
-    playAppearFurnitureAnimation(
-      currentItem,
-      startScale,
-      targetScale,
-      duration,
-      easing
-    );
+    handleShowFurnitureItem(currentItem);
   },
 };

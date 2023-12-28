@@ -1,3 +1,6 @@
+import { handleCloseShopAnimation } from "./HandleC";
+import { Joy } from "./JoystickC";
+
 const shopProduct = [
   {
     cardImg: 'url("UI/icon_shopItem_DoubleBed.webp")',
@@ -84,13 +87,13 @@ function getDOMElements() {
 }
 
 document.querySelector(".shopCloseButton").onclick = function () {
-  document.querySelector(".isHideShop").style.display = "none";
-  document.querySelector(".moveController").style.display = "block";
+  handleCloseShopAnimation(".isHideShop", "none")
+  Joy.nippleUnlock()
 };
 
 document.querySelector(".closeBoughtItems").onclick = function () {
-  document.querySelector(".boughtItemsContainer").style.display = "none";
-  document.querySelector(".moveController").style.display = "block";
+  handleCloseShopAnimation(".boughtItemsContainer", "none")
+  Joy.nippleUnlock()
 };
 
 export {shopProduct, shopCategories, getDOMElements}

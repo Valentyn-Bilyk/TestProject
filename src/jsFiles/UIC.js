@@ -1,7 +1,8 @@
 import { HouseTrigger, ShopTrigger, WallsTrigger } from "./GameTriggers";
 import { HouseC } from "./HouseC";
 import { boughtItemsCounter } from "./ShopC";
-import { handleTriggersAnimation } from "./TweenC";
+import { handleOpenShopAnimation } from "./HandleC";
+import { Joy } from "./JoystickC";
 
 export function handleCollision(event) {
   const collidedBody = event.body;
@@ -11,13 +12,11 @@ export function handleCollision(event) {
 
   if (collidedBody === houseWalls) HouseC.hideWalls();
   if (collidedBody === houseTrigger && boughtItemsCounter) {
-    handleTriggersAnimation(".boughtItemsContainer", "flex")
-
-    document.querySelector(".moveController").style.display = "none";
+    handleOpenShopAnimation(".boughtItemsContainer", "flex")
+    Joy.nippleLock()
   }
   if (collidedBody === triggerShop) {
-    handleTriggersAnimation(".isHideShop", "block")
-
-    document.querySelector(".moveController").style.display = "none";
+    handleOpenShopAnimation(".isHideShop", "block")
+    Joy.nippleLock()
   }
 }

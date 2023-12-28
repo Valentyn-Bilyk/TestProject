@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import * as CANNON from 'cannon-es'
 import TWEEN from '@tweenjs/tween.js'
-import CannonDebugger from 'cannon-es-debugger'
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { CharacterC } from "./CharacterC";
@@ -12,7 +11,6 @@ import { HouseTrigger, ShopTrigger, WallsTrigger } from "./GameTriggers";
 ThreeC.init();
 
 export const world = new CANNON.World()
-export const cannonDebugger = new CannonDebugger(ThreeC.scene, world, {})
 
 const gltfLoader = new GLTFLoader();
 
@@ -39,7 +37,6 @@ function animate() {
   previousTime = elapsedTime;
 
   world.fixedStep();
-  cannonDebugger.update();
   if(CharacterC) CharacterC.update(deltaTime);
 
   TWEEN.update()

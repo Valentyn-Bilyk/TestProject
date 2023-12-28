@@ -1,4 +1,5 @@
 import { FurnitureC } from "./FurnitureC";
+import { MapC } from "./MapC";
 import {shopProduct, shopCategories, getDOMElements} from './Shop'
 
 export let boughtItemsCounter = 0;
@@ -54,6 +55,7 @@ function createShopCard(imgName, cardName, price, id) {
 
       money.innerHTML -= price;
       boughtItemsCounter++;
+      MapC.showHouseTrigger();
       displayBoughtItems(itemId, shopCard);
     } else if (shopCard.selected) {
       return;

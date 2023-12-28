@@ -14,11 +14,14 @@ export let CharacterC = {
   rotation: { x: 0, y: 0, z: 0 },
   init: function (gltf_obj) {
     this.threeObj = gltf_obj.scene;
+    const characterParts = this.threeObj.getObjectByName('Armature').children
+    characterParts.forEach((el) => {
+      el.castShadow = true
+    })
     this.animations = gltf_obj.animations;
 
     this.position = this.threeObj.position;
     this.position.set(-2.473, 0, -3.693);
-
     this.rotation = gltf_obj.scene.rotation;
 
     this.animationMixer = new THREE.AnimationMixer(this.threeObj);

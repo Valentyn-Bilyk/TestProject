@@ -4,9 +4,20 @@ import { CharacterC } from "./CharacterC";
 export const Joy = {
   manager: nipplejs.create({
     zone: document.querySelector(".moveController"),
-  }),
-};
+    lockX: false,
+    lockY: false,
 
+  }),
+  nippleLock() {
+    this.manager.options.lockY = true
+    this.manager.options.lockX = true
+    CharacterC.setPhysicsBodyVelocity(0, 0)
+  },
+  nippleUnlock() {
+    this.manager.options.lockY = false
+    this.manager.options.lockX = false
+  }
+};
 Joy.manager.on("move", function (evt, nipple) {
   let k = 0;
 

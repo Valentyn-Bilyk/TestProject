@@ -3,6 +3,7 @@ import { world } from "./Core";
 import { FurnitureC } from "./FurnitureC";
 import { HouseC } from "./HouseC";
 import { HouseTrigger, ShopTrigger } from "./GameTriggers";
+import { handlePlayHouseTriggerAnimation } from "./HandleC";
 
 export let MapC = {
   threeObj: null,
@@ -10,7 +11,6 @@ export let MapC = {
   houseTrigger: null,
   init: function (gltf_obj) {
     this.threeObj = gltf_obj.scene;
-
     this.threeObj.getObjectByName("QuestArrow").visible = false;
     this.threeObj.getObjectByName("Trigger_house_1").visible = false;
     this.threeObj.getObjectByName("BoxColliders").visible = false
@@ -19,12 +19,23 @@ export let MapC = {
     this.houseTrigger = this.threeObj.getObjectByName("Trigger_house_2");
     FurnitureC.init(this.threeObj.getObjectByName("Furniture"));
     HouseC.init(this.threeObj.getObjectByName("PlayerHouse"));
-
+    const map = this.threeObj.getObjectByName("Ground_Plane").children
+    map.forEach((el) => {
+      el.receiveShadow = true
+    })
     const boxColliders = this.threeObj.getObjectByName("BoxColliders").children;
     boxColliders.forEach(({ name }) =>
       MapColliders.init(this.threeObj.getObjectByName(name))
     );
+    this.hideHouseTrigger()
+    handlePlayHouseTriggerAnimation(this.houseTrigger)
   },
+  hideHouseTrigger() {
+    this.houseTrigger.visible = false;
+  },
+  showHouseTrigger() {
+    this.houseTrigger.visible =  true;
+  }
 };
 
 ShopTrigger.initObj(MapC.shopTrigger)
