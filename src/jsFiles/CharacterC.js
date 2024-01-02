@@ -2,6 +2,7 @@ import * as THREE from "three";
 import * as CANNON from "cannon-es";
 import { world } from "./Core";
 import { handleCollision } from "./UIC";
+import { ThreeC } from "./ThreeC";
 
 export let CharacterC = {
   animations: [],
@@ -28,10 +29,15 @@ export let CharacterC = {
     this.actionIdle = this.animationMixer.clipAction(this.animations[2]);
     this.actionWalk = this.animationMixer.clipAction(this.animations[4]);
     CharacterC.initPhysics(world);
+    this.actionIdle.play()
   },
   startWalk() {
     this.actionIdle.stop();
     this.actionWalk.play();
+    setTimeout(() => {
+
+      ThreeC.createSmoke()
+    }, 1000)
   },
   startIdle() {
     this.actionWalk.stop();

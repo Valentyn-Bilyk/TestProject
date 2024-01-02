@@ -18,20 +18,9 @@ export const ThreeC = {
 
     this.scene = new THREE.Scene();
 
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 2);
-    this.scene.add(this.ambientLight);
-
-    this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    this.directionalLight.position.set(47, 70, -20);
-    this.directionalLight.castShadow = true;
-    this.directionalLight.shadow.camera.top = 20;
-    this.directionalLight.shadow.camera.right = 50;
-    this.directionalLight.shadow.camera.bottom = -40;
-    this.directionalLight.shadow.camera.left = -50;
-
-    this.scene.add(this.directionalLight);
-
     this.camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
+
+    this.lightSettings();
 
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     if (this.renderer) this.renderer.shadowMap.enabled = true;
@@ -62,6 +51,48 @@ export const ThreeC = {
       );
       this.camera.fov = fov;
       this.camera.updateProjectionMatrix();
+    }
+  },
+  lightSettings() {
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 2);
+    this.scene.add(this.ambientLight);
+
+    this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    this.directionalLight.position.set(47, 70, -20);
+    this.directionalLight.castShadow = true;
+    this.directionalLight.shadow.camera.top = 20;
+    this.directionalLight.shadow.camera.right = 50;
+    this.directionalLight.shadow.camera.bottom = -40;
+    this.directionalLight.shadow.camera.left = -50;
+    this.scene.add(this.directionalLight);
+  },
+  createSmoke() {
+    const smokeTexture = new THREE.TextureLoader().load("FX/Character_trail.webp");
+    const smoke = new THREE.Mesh(
+      new THREE.BoxGeometry(4, 1, 1),
+      new THREE.MeshLambertMaterial({
+        map: smokeTexture,
+        opacity: 1,
+        transparent: true,
+      })
+    );
+    smoke.name = 'smokeElement'
+    this.scene.add(smoke);
+    this.updateSmokePosition(smoke)
+    setTimeout(() => {
+      this.removeSmoke()
+    },1100)
+  },
+  removeSmoke() {
+    const smokeElement = ThreeC.scene.getObjectByName('smokeElement');
+    if (smokeElement) {
+      ThreeC.scene.remove(smokeElement);
+    }
+  },
+  updateSmokePosition(smokeElement) {
+    if (smokeElement) {
+      smokeElement.position.copy(CharacterC.position).add(new THREE.Vector3(-2, 0, 0));
+      // smokeElement.rotation.copy(CharacterC.rotation)
     }
   },
 };
